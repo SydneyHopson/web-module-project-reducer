@@ -6,7 +6,7 @@ import './App.css';
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 import reducer,{ initialState } from '/src/reducers'
-import { applyNumber, changeOperation, clearDisplay } from '../actions';
+import { applyNumber, changeOperation, clearDisplay, addMemory, applyMemory, clearMemory } from '../actions';
 
 function App() {
 const [ state, dispatch] = useReducer(reducer, initialState)
@@ -20,7 +20,18 @@ const handleOperationClick = (operator) => {
 const handleClearDisplay = () => {
   dispatch(clearDisplay());
 }
-  return (
+const handleMemoryAdd = () => {
+  dispatch(addMemory());
+}
+const handleMemoryApply = () => {
+  dispatch(applyMemory());
+}
+const handleMemoryClear = () => {
+  dispatch(clearMemory());
+}
+
+
+return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
         <a className="navbar-brand" href="#"> Reducer Challenge</a>
@@ -37,9 +48,9 @@ const handleClearDisplay = () => {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton value={"M+"} onClick={ handleMemoryAdd }/>
+              <CalcButton value={"MR"} onClick={ handleMemoryApply }/>
+              <CalcButton value={"MC"} onClick={ handleMemoryClear }/>
             </div>
 
             <div className="row">
