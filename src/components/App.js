@@ -13,7 +13,9 @@ const [ state, dispatch] = useReducer(reducer, initialState)
 const handleNumberClick = (number) => {
   dispatch(applyNumber(number));
 }
-const handleOperationClick = (operator)
+const handleOperationClick = (operator) => {
+  dispatch(changeOperation(operator));
+}
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -56,8 +58,8 @@ const handleOperationClick = (operator)
 
             <div className="row">
               <CalcButton value={"+"} onClick={() => handleOperationClick("+") }/>
-              <CalcButton value={"*"}/>
-              <CalcButton value={"-"}/>
+              <CalcButton value={"*"} onClick={() => handleOperationClick("*") }/>
+              <CalcButton value={"-"} onClick={() => handleOperationClick("-") }/>
             </div>
 
             <div className="row ce_button">
